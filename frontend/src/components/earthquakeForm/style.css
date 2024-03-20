@@ -1,0 +1,33 @@
+.form{
+    width: 100%;
+}
+
+.form .row{
+    margin-bottom: 10px;
+    display: grid;
+}
+
+.form .row label{
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--first-color);
+    opacity: 0.6;
+}
+
+.form input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: var(--first-color);
+    color: var(--fifth-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+    margin-bottom: 1em;
+}

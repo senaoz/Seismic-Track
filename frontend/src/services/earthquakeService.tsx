@@ -1,3 +1,5 @@
+import { Earthquake } from "../interfaces";
+
 const API_URL = "http://localhost:8000/api";
 
 export const fetchAllEarthquakes = async () => {
@@ -50,6 +52,23 @@ export const fetchStrongestEarthquake = async () => {
     return data;
   } catch (error) {
     console.error("Error fetching strongest earthquake:", error);
+    throw error;
+  }
+};
+
+export const addEarthquake = async (earthquake: Earthquake) => {
+  try {
+    const response = await fetch(`${API_URL}/earthquakes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(earthquake),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error adding earthquake:", error);
     throw error;
   }
 };
