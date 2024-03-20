@@ -28,6 +28,10 @@ export const fetchLatestEarthquake = async () => {
   try {
     const response = await fetch(`${API_URL}/earthquakes/latest`);
     const data = await response.json();
+    data.lat = parseFloat(data.lat);
+    data.lon = parseFloat(data.lon);
+    data.magnitude = parseFloat(data.magnitude);
+    data.created_at = new Date(data.created_at);
     return data;
   } catch (error) {
     console.error("Error fetching latest earthquake:", error);
@@ -39,6 +43,10 @@ export const fetchStrongestEarthquake = async () => {
   try {
     const response = await fetch(`${API_URL}/earthquakes/strongest`);
     const data = await response.json();
+    data.lat = parseFloat(data.lat);
+    data.lon = parseFloat(data.lon);
+    data.magnitude = parseFloat(data.magnitude);
+    data.created_at = new Date(data.created_at);
     return data;
   } catch (error) {
     console.error("Error fetching strongest earthquake:", error);

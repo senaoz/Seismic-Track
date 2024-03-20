@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import EarthquakeMap from "./components/earthquakeMap";
 import { Earthquake } from "./interfaces";
 import {
@@ -7,6 +6,7 @@ import {
   fetchLatestEarthquake,
   fetchStrongestEarthquake,
 } from "./services/earthquakeService";
+import EarthquakeListItem from "./components/earthquakeListItem";
 
 const App: React.FC = () => {
   const [earthquakes, setEarthquakes] = useState<Earthquake[] | null>(null);
@@ -36,39 +36,52 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Earthquake Data</h1>
-      <h2>All Earthquakes</h2>
-      <ul>
-        {earthquakes &&
-          earthquakes.map((earthquake) => (
-            <li key={earthquake.id}>
-              Magnitude: {earthquake.magnitude}, Latitude: {earthquake.lat},
-              Longitude: {earthquake.lon}
-            </li>
-          ))}
-      </ul>
-      {earthquakes && <EarthquakeMap earthquakes={earthquakes} />}
-
-      <h2>
-        📌 Latest Earthquake:{" "}
-        {latestEarthquake?.created_at &&
-          new Date(latestEarthquake.created_at).toLocaleString()}
-      </h2>
-      {latestEarthquake && (
-        <p>
-          Magnitude: {latestEarthquake.magnitude}, Latitude:{" "}
-          {latestEarthquake.lat}, Longitude: {latestEarthquake.lon}
-        </p>
-      )}
-
-      <h2>📌 Strongest Earthquake: {strongestEarthquake?.magnitude}</h2>
-      {strongestEarthquake && (
-        <p>
-          Magnitude: {strongestEarthquake.magnitude}, Latitude:{" "}
-          {strongestEarthquake.lat}, Longitude: {strongestEarthquake.lon}
-        </p>
-      )}
+    <div className="grid-container">
+      <header className="header">
+        <h1>Seismic Tracker</h1>
+      </header>
+      <div className="earthquake-list">
+        <h2>Latest Earthquake</h2>
+        {latestEarthquake && (
+          <div>
+            <p>
+              <strong>Magnitude:</strong> {latestEarthquake.magnitude}
+            </p>
+            <p>
+              <strong>Location:</strong> {latestEarthquake.lat},{" "}
+              {latestEarthquake.lon}
+            </p>
+            <p>
+              <strong>Date:</strong>{" "}
+              {latestEarthquake.created_at.toLocaleString()}
+            </p>
+          </div>
+        )}
+        <h2>Strongest Earthquake</h2>
+        {strongestEarthquake && (
+          <div>
+            <p>
+              <strong>Magnitude:</strong> {strongestEarthquake.magnitude}
+            </p>
+            <p>
+              <strong>Location:</strong> {strongestEarthquake.lat},{" "}
+              {strongestEarthquake.lon}
+            </p>
+            <p>
+              <strong>Date:</strong>{" "}
+              {strongestEarthquake.created_at.toLocaleString()}
+            </p>
+          </div>
+        )}
+        <h2>All Earthquakes</h2>
+        <ul>
+          {earthquakes &&
+            earthquakes.map((earthquake) => (
+              <EarthquakeListItem earthquake={earthquake} />
+            ))}
+        </ul>
+      </div>
+      <EarthquakeMap earthquakes={earthquakes || []} />
     </div>
   );
 };
