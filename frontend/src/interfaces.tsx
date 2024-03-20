@@ -1,7 +1,7 @@
 export interface Earthquake {
-  id: number;
+  id?: number;
   magnitude: number;
   lat: number;
   lon: number;
-  created_at: string;
+  created_at?: string;
 }

@@ -5,6 +5,7 @@ import L from "leaflet";
 import Legend from "./legend";
 import "./style.css";
 import { Earthquake } from "../../interfaces";
+import EarthquakeListItem from "../earthquakeListItem";
 
 interface Props {
   earthquakes: Earthquake[];
@@ -13,7 +14,7 @@ interface Props {
 const customIcon = (magnitude: number): L.DivIcon => {
   return new L.DivIcon({
     className: "custom-icon",
-    html: `<div style="color: ${magnitude >= 7 ? "darkred" : magnitude >= 6 ? "red" : "orange"}">${magnitude}</div>`,
+    html: `<div style="color: ${magnitude >= 7 ? "var(--second-color)" : magnitude >= 6 ? "var(--third-color)" : "var(--fourth-color)"}">${magnitude}</div>`,
   });
 };
 
@@ -76,7 +77,7 @@ const EarthquakeMap: React.FC<Props> = ({ earthquakes }) => {
             icon={customIcon(earthquake.magnitude)}
           >
             <Popup>
-              <strong>Magnitude:</strong> {earthquake.magnitude}
+              <EarthquakeListItem earthquake={earthquake} popup={true} />
             </Popup>
           </Marker>
         ))}

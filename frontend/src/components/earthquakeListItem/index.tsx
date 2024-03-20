@@ -1,18 +1,29 @@
 import React from "react";
 import { Earthquake } from "../../interfaces";
 
-const EarthquakeListItem = ({ earthquake }: { earthquake: Earthquake }) => {
+const EarthquakeListItem = ({
+  earthquake,
+  popup,
+}: {
+  earthquake: Earthquake;
+  popup?: boolean;
+}) => {
   let color = "";
   if (earthquake.magnitude >= 7) {
-    color = "darkred";
+    color = "var(--second-color)";
   } else if (earthquake.magnitude >= 6) {
-    color = "red";
+    color = "var(--third-color)";
+  } else if (earthquake.magnitude >= 5) {
+    color = "var(--fourth-color)";
   } else {
-    color = "orange";
+    color = "#29344194";
   }
 
   return (
-    <li key={earthquake.id}>
+    <li
+      className={popup ? "earthquake-popup-item" : "earthquake-list-item"}
+      key={earthquake.id}
+    >
       <div className="magnitude" style={{ color: color }}>
         {earthquake.magnitude.toFixed(1)}
       </div>
@@ -21,7 +32,7 @@ const EarthquakeListItem = ({ earthquake }: { earthquake: Earthquake }) => {
           {earthquake.lat}, {earthquake.lon}
         </strong>
         <br />
-        {earthquake.created_at.toLocaleString()}
+        {earthquake.created_at?.toLocaleString()}
       </div>
     </li>
   );

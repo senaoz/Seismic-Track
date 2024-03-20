@@ -14,11 +14,11 @@ function Legend({ position }: { position?: string }) {
   return (
     <div className={positionClass}>
       <div className="legend leaflet-control leaflet-bar">
-        <h3 className="legend-title">Magnitude</h3>
+        <h2 className="legend-title">Magnitude</h2>
         <ul className="legend-labels">
-          <li style={{ color: "orange" }}>5.0-5.9</li>
-          <li style={{ color: "red" }}>6.0-6.9</li>
-          <li style={{ color: "darkred" }}>7+</li>
+          <li style={{ color: "var(--fourth-color)" }}>5.0-5.9</li>
+          <li style={{ color: "var(--third-color)" }}>6.0-6.9</li>
+          <li style={{ color: "var(--second-color)" }}>7+</li>
         </ul>
       </div>
     </div>
