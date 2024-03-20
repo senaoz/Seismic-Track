@@ -9,7 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_SERVER['REQUEST_URI'] === '/api/earthquakes') {
-        $sql = "SELECT * FROM earthquake_monitoring.earthquakes";
+        $sql = "SELECT * FROM earthquake_monitoring.earthquakes ORDER BY created_at DESC";
         $result = $conn->query($sql);
         $earthquakes = array();
         while ($row = $result->fetch_assoc()) {
@@ -30,9 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_SERVER['REQUEST_URI'] === '/api/earthquakes') {
         $data = json_decode(file_get_contents('php://input'), true);
+
+        $data['magnitude'] = (float) $data['magnitude'];
+        $data['lat'] = (float) $data['lat'];
+        $data['lon'] = (float) $data['lon'];
+
         $sql = "INSERT INTO earthquake_monitoring.earthquakes (magnitude, lat, lon) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ds", $data['magnitude'], $data['lat'], $data['lon']);
+        $stmt->bind_param("dds", $data['magnitude'], $data['lat'], $data['lon']);
         if ($stmt->execute()) {
             echo "New earthquake added successfully";
         } else {
@@ -84,6 +89,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     ));
 }
 
-// Close connection
 $conn->close();
 ?>
