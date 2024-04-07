@@ -4,33 +4,9 @@ This is a simple API that allows users to add and retrieve earthquake data. The 
 
 ## Endpoints
 
-### Add Earthquake Data
-
-#### `POST /earthquake`
-
-This endpoint allows the user to add earthquake data to the database.
-
-#### Request Body
-
-| Field     | Type   | Required | Description |
-| --------- | ------ | -------- | ----------- |
-| latitude  | number | true     | The latitude of the earthquake |
-| longitude | number | true     | The longitude of the earthquake |
-| magnitude | number | true     | The magnitude of the earthquake |
-
-##### Example
-
-```json
-{
-    "latitude": 34.0522,
-    "longitude": -118.2437,
-    "magnitude": 4.5
-}
-```
-
 ### Get All Earthquakes Data
 
-#### `GET /earthquakes`
+#### `GET /api/earthquakes`
 
 This endpoint allows the user to retrieve **all earthquakes** data from the database.
 
@@ -67,19 +43,43 @@ This endpoint allows the user to retrieve **all earthquakes** data from the data
 
 ### Get Latest Earthquake Data
 
-#### `GET /earthquakes/latest`
+#### `GET /api/earthquakes/latest`
 
 This endpoint allows the user to retrieve the latest earthquake data from the database.
 
 ### Get Strongest Earthquake Data
 
-#### `GET /earthquakes/strongest`
+#### `GET /api/earthquakes/strongest`
 
 This endpoint allows the user to retrieve the strongest earthquake data from the database.
 
+### Add Earthquake Data
+
+#### `POST /api/earthquake`
+
+This endpoint allows the user to add earthquake data to the database.
+
+#### Request Body
+
+| Field     | Type   | Required | Description |
+| --------- | ------ | -------- | ----------- |
+| latitude  | number | true     | The latitude of the earthquake |
+| longitude | number | true     | The longitude of the earthquake |
+| magnitude | number | true     | The magnitude of the earthquake |
+
+##### Example
+
+```json
+{
+    "latitude": 34.0522,
+    "longitude": -118.2437,
+    "magnitude": 4.5
+}
+```
+
 ### Put and Delete Earthquake Data
 
-#### `PUT /earthquakes`
+#### `PUT /api/earthquakes`
 
 This endpoint allows the user to update an earthquake data in the database **where the id is specified.**
 
@@ -94,7 +94,7 @@ This endpoint allows the user to update an earthquake data in the database **whe
 }
 ```
 
-#### `DELETE /earthquakes`
+#### `DELETE /api/earthquakes`
 
 This endpoint allows the user to delete an earthquake data from the database  **where the id is specified.**
 
@@ -106,7 +106,6 @@ This endpoint allows the user to delete an earthquake data from the database  **
 }
 ```
 
-
 ## Scripts
 
 ### Manual Input Script
@@ -116,6 +115,10 @@ Latitude, longitude, and magnitude are required and must be numbers.
 
 #### Usage
 `cd scripts && php ManualInputScript.php <latitude> <longitude> <magnitude>` or ask the user for input 
+
+```bash
+cd scripts && php ManualInputScript.php 
+```
 
 #### Example
 `php ManualInputScript.php 34.0522 -118.2437 4.5`
@@ -128,4 +131,14 @@ Latitude, longitude, and magnitude are required and must be numbers.
 This script generates random earthquake data and sends a POST request to the API to add the earthquake data to the database while the user terminates the script.
 
 #### Usage
-`cd scripts && php RandomInputScript.php`
+```bash
+cd scripts && php RandomInputScript.php
+```
+
+## Starting the API
+
+To start the API, run the following command:
+
+```bash
+php -S localhost:8000 
+```
