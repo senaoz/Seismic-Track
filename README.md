@@ -2,6 +2,14 @@
 
 -soon-
 
+## Available Scripts
+
+In the project directory, you can run:
+
+#### `npm start`
+
+Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 # Backend & Earthquake API
 
 This is a simple API that allows users to add and retrieve earthquake data. The API is built using PHP. The database is a MySQL database.
