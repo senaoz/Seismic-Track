@@ -13,3 +13,15 @@ services:
     build: ./frontend
     ports:
       - 3001:3001
+  db:
+    platform: linux/x86_64
+    hostname: db
+    container_name: db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: XXX
+      MYSQL_DATABASE: earthquake_monitoring
+      MYSQL_PASSWORD: XXX
+    ports:
+      - 3307:3306
+    restart: unless-stopped
