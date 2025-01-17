@@ -2,6 +2,9 @@
 
 A web application built with React, Leaflet, and TypeScript that enables users to track and visualize seismic activity worldwide in real-time.
 
+<img width="1437" alt="Screenshot 2024-10-20 at 12 42 39" src="https://github.com/user-attachments/assets/5189b275-db19-4296-b3e9-3414c4f20bc2" />
+
+
 ## Backend & Earthquake API
 
 This is a simple API that allows users to add and retrieve earthquake data. The API is built using PHP. The database is a MySQL database.
